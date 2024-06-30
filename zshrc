@@ -14,6 +14,14 @@ ZSH_DISABLE_COMPFIX=true
 
 # Actually load Oh-My-Zsh
 source "${ZSH}/oh-my-zsh.sh"
+
+# Ensure plugins are loaded
+for plugin ($plugins); do
+  if [ -d "$ZSH/custom/plugins/$plugin" ]; then
+    source "$ZSH/custom/plugins/$plugin/$plugin.plugin.zsh"
+  fi
+done
+
 unalias rm # No interactive rm by default (brought by plugins/common-aliases)
 unalias lt # we need `lt` for https://github.com/localtunnel/localtunnel
 
